@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,7 +143,9 @@
     <ClCompile Include="dice-calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="die.h" />
+    <ClInclude Include="Diceset.h" />
+    <ClInclude Include="Die.h" />
+    <ClInclude Include="getdicesets.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

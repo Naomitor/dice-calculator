@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
 
-class die
-{
-public:
-	std::vector <int>;
+class Die{
+	public:
+		int sides;
+		std::vector<int> alleyes;
 };
 

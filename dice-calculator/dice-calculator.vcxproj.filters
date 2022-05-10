@@ -20,7 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="die.h">
+    <ClInclude Include="Die.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Diceset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getdicesets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
