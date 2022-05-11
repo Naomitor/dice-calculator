@@ -3,7 +3,7 @@
 
 class Die{
 	public:
-		int sides;
+		int sides{};
 		std::vector<int> alleyes;
 };
 

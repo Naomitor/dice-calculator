@@ -2,13 +2,12 @@
 //
 
 #include <iostream>
-//#include "getdicesets.h"
+#include "getdicesets.h"
 
-int main()
-{
-    //func_getdicesets();
+int main(){
+    func_getdicesets();
 
-}
+    }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
