@@ -1,7 +1,7 @@
 #pragma once
 #include "Die.h"
 
-class Dicesets : public Die {
+class Diceset : public Die {
 public:
     int amount{};
 };
