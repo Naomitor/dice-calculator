@@ -4,5 +4,6 @@
 class Diceset : public Die {
 public:
     int amount{};
+    bool plusorminus;
 };
 
