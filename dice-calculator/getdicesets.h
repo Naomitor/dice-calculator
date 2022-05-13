@@ -76,8 +76,8 @@ void func_getdicesets() {
 				userinput = userinput.erase(0, secondoperatorindex);
 			}
 
-			// If a braket comes after the next d, it signals a special die and it will be handeld by this  
-			else if (braketindex - nextdindex == 1) {
+			// This either creates a special die out of a standart and processes it into a vector of objects or just does the later for special dice
+			else {
 
 				// Fill the dice amount of the set into amount and remove the numbers and d from the string
 				int dicethrown = std::stoi(userinput.substr(0, nextdindex));
@@ -98,6 +98,10 @@ void func_getdicesets() {
 					break;
 				}
 
+				if (braketindex - nextdindex != 1) {
+
+				}
+
 				// The amount of sides a die has, is calculated by rounding the special die input and adding one
 				int diesides = lround(specialdiesides.length() / 2) + 1;
 
@@ -112,10 +116,9 @@ void func_getdicesets() {
 				// The amount of dice thrown, die sides and the vector with all eyes on a die get pushed into the objects vector dicesets of class Diceset
 				dicesets.push_back(Diceset{diesides, eyes, dicethrown, plusminus});
 				
-				//std::cout << dicesets[0].sides << std::endl << dicesets[0].alleyes[1] << std::endl << dicesets[0].amount << std::endl << dicesets[0].plusorminus << std::endl;
+				//std::cout << dicesets[0].sides << std::endl << dicesets[0].alleyes[0] << std::endl << dicesets[0].amount << std::endl << dicesets[0].plusorminus << std::endl;
 			}
 		}
 	}
 }
-//filter normal dice and create a vector for it
 //2-5+6+2d{4,5}

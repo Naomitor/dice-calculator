@@ -12,10 +12,28 @@ int main(){
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+// Ideas:
+// For crit with possible adv/dis and/or elvenluck:
+// Highest z of xdy =  ((y-z)/y)^x
+// 
+// Meanthrow
+// (All eyes on die / sides on die) * diceset
+//
+// Chance to get equal and more:
+// possibilities/maximum posibilities 
+//
+// Maximum possibilities:
+// length of super die
+//
+// Super die:
+// all possible dice throws in one array
+//
+// Chance to get equal for plotting graph:
+// possibilities/maximum posibilities
+
+// Websites
+// https://www.w3schools.com/cpp/cpp_conditions.asp
+// https://www.programiz.com/cpp-programming/vectors
+// https://stackoverflow.com/questions/8011887/how-can-i-create-multiple-objects-with-for-loop-in-c
+// https://www.geeksforgeeks.org/multithreading-in-cpp/
+// https://www.gigacalculator.com/calculators/dice-probability-calculator.php#two-six-sided
