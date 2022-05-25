@@ -4,7 +4,16 @@
 #include <iostream>
 #include <string>
 
-void func_getdicesets() {
+struct struct_getdicesets {
+	int addsubtract;
+	std::vector<Diceset> dicesets;
+};
+
+typedef struct struct_getdicesets Struct;
+
+Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
+	
+	Struct s;
 
 	// Display message for user
 	std::cout << "Please input your dice set/sets and anthing you want to add or subtract" << std::endl;
@@ -17,37 +26,33 @@ void func_getdicesets() {
 	std::string userinput;
 	std::cin >> userinput;
 
-	// Set a plus infront of the string and a minus behind to get pointers for the first and last operation
-	userinput = "+" + userinput + "-";
-
 	// Search for characters that are not supposed to be in the input and count the number of d큦
 	int64_t foundwronginputindex = userinput.find_first_not_of("1234567890d,+-{}");
 	int64_t dcount = std::count(userinput.begin(), userinput.end(), 'd');
 
-	// If there are wrong characters or no d큦, output help for the user
+	// If there are wrong characters or no d큦, output help for the user, else start the process of filtering the string
 	if (foundwronginputindex != -1) {
-		std::cout << "Looks like there are characters in the input that I did not recognize";
+		std::cout << "Looks like there are characters in the input that I do not recognize";
 	}
 	else if (dcount == 0) {
 		std::cout << "You forgot the d ;)";
 	}
-
-	// Else start the process of filtering the string
 	else {
+
+		// Set a plus infront of the string and a minus behind to get pointers for the first and last operation
+		userinput = "+" + userinput + "-";
 
 		// Find the amount of +/- in the string
 		int64_t plusminuscount = std::count(userinput.begin(), userinput.end(), '+');
 		plusminuscount += std::count(userinput.begin(), userinput.end(), '-');
+		plusminuscount -= 1;
 
 		// Initialize the vector for the class Diceset, dicesets and set the amount of d큦 as reserve
 		std::vector<Diceset> dicesets;
 		dicesets.reserve(dcount);
 
-		// Declare addsubtract befor the loop because it needs to be returned with the dicesets vector
-		int addsubtract = 0;
-
-		// For the amount of d큦 (dice sets) found in the input, break them up into diceset objects
-		for (int i = 0; i < plusminuscount - 1; i++) {
+		// For the amount of +/- found in the input, sort the string into addsubtract or create Diceset objects
+		for (int i = 0; i < plusminuscount; i++) {
 
 			// Set the bool to true if it is plus or false if it is minus
 			bool plusminus;
@@ -57,6 +62,7 @@ void func_getdicesets() {
 			else {
 				plusminus = false;
 			}
+			// Remove the symbol from the string
 			userinput = userinput.erase(0, 1);
 
 			// Find the next d, open braket and +/-
@@ -64,7 +70,7 @@ void func_getdicesets() {
 			int64_t braketindex = userinput.find("{");
 			int64_t secondoperatorindex = userinput.find_first_of("+-");
 
-			// If the next part of userinput is a addition or subtraction of a number filter it out of the string and add or subtract it to addsubtract.
+			// If the next part of userinput is a addition or subtraction of a number filter it out of the string and add or subtract it from addsubtract.
 			// After that remove the numbers out of the string.
 			if (nextdindex == - 1 || nextdindex - secondoperatorindex >= 2) {
 				if (plusminus) {
@@ -81,44 +87,48 @@ void func_getdicesets() {
 
 				// Fill the dice amount of the set into amount and remove the numbers and d from the string
 				int dicethrown = std::stoi(userinput.substr(0, nextdindex));
-				userinput = userinput.erase(0, nextdindex+1);
+				userinput = userinput.erase(0, nextdindex + 1);
 
-				// Define the vetor for the amount of eyes on each side, the string for the special die and find the second +/-
-				std::vector<int> eyes;
+				// Define the string for the special die and initialze diesides
 				std::string specialdiesides;
-				secondoperatorindex = secondoperatorindex - (nextdindex + 1);
+				int diesides = 0;
 
-				// Remove the brackets aroung the special die eyes, assign it to a new string and remove that part from input if there is no typo, if there is read ouput
-				if (secondoperatorindex >= 3) {
-					specialdiesides = userinput.substr(1, secondoperatorindex - 2);
-					userinput = userinput.erase(1, secondoperatorindex);
+
+				// Else 
+				if (braketindex - nextdindex == 1) {
+					// Remove the brackets around the special die eyes, assign it to a new string and remove that part from userinput
+					specialdiesides = userinput.substr(1, secondoperatorindex - nextdindex - 3);
+					userinput = userinput.erase(0, secondoperatorindex - nextdindex - 1); // 1 to 0
+					diesides = std::count(specialdiesides.begin(), specialdiesides.end(), ',') + 1;
 				}
 				else {
-					std::cout << "Either you forgot a braket {} or there is no number in the brakets";
-					break;
+					// Create a special die out of a normal die, by starting at one and increasing to the number of sides, assign them to new string and remove sides from input
+					diesides = std::stoi(userinput.substr(0, secondoperatorindex - nextdindex - 1));
+					userinput = userinput.erase(0, secondoperatorindex - nextdindex - 1);
+					for (int i = 1; i <= diesides; i++) {
+						specialdiesides.append(std::to_string(i) + ",");
+					}
+					specialdiesides.erase(specialdiesides.size() - 1);
 				}
 
-				if (braketindex - nextdindex != 1) {
-
-				}
-
-				// The amount of sides a die has, is calculated by rounding the special die input and adding one
-				int diesides = lround(specialdiesides.length() / 2) + 1;
-
-				// This gets set as reserve for eyes vector
+				// Define the vetor for the amount of eyes on each side and set as reserve for it
+				std::vector<int> eyes;
 				eyes.reserve(diesides);
 
 				// After which the eyes on each side of the die get filterd into the eyes vector
-				for (i = 0; i < diesides * 2; i += 2) {
-					eyes.push_back(int(std::stoi(specialdiesides.substr(i, 1))));
+				for (int i = 0; i < diesides; i++) {
+					int64_t commaindex = specialdiesides.find(",");
+					eyes.push_back(int(std::stoi(specialdiesides.substr(0, commaindex))));
+					specialdiesides.erase(0, commaindex + 1);
 				}
 
 				// The amount of dice thrown, die sides and the vector with all eyes on a die get pushed into the objects vector dicesets of class Diceset
 				dicesets.push_back(Diceset{diesides, eyes, dicethrown, plusminus});
 				
-				//std::cout << dicesets[0].sides << std::endl << dicesets[0].alleyes[0] << std::endl << dicesets[0].amount << std::endl << dicesets[0].plusorminus << std::endl;
+				//For tests
+				//std::cout << dicesets[0].sides << std::endl << dicesets[0].alleyes[5] << std::endl << dicesets[0].amount << std::endl << dicesets[0].plusorminus << std::endl << addsubtract;
+				//23-56+68+12d{4,5,45,23,12,14}-20d68
 			}
 		}
 	}
 }
-//2-5+6+2d{4,5}

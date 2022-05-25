@@ -5,7 +5,10 @@
 #include "getdicesets.h"
 
 int main(){
-    func_getdicesets();
+    int plusminus;
+    std::vector<Diceset> dicesets;
+
+    func_getdicesets(&plusminus, &dicesets);
 
     }
 
@@ -37,3 +40,4 @@ int main(){
 // https://stackoverflow.com/questions/8011887/how-can-i-create-multiple-objects-with-for-loop-in-c
 // https://www.geeksforgeeks.org/multithreading-in-cpp/
 // https://www.gigacalculator.com/calculators/dice-probability-calculator.php#two-six-sided
+// https://www.geeksforgeeks.org/how-to-return-multiple-values-from-a-function-in-c-or-cpp/
