@@ -1,19 +1,13 @@
 #pragma once
+#pragma once
 #include <vector>
 #include "Diceset.h"
 #include <iostream>
 #include <string>
+#include "struct_sortedinput.h"
 
-struct struct_getdicesets {
-	int addsubtract;
-	std::vector<Diceset> dicesets;
-};
-
-typedef struct struct_getdicesets Struct;
-
-Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
-	
-	Struct s;
+sortedinput getdicesets() {
+	sortedinput output;
 
 	// Display message for user
 	std::cout << "Please input your dice set/sets and anthing you want to add or subtract" << std::endl;
@@ -29,6 +23,12 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 	// Search for characters that are not supposed to be in the input and count the number of d큦
 	int64_t foundwronginputindex = userinput.find_first_not_of("1234567890d,+-{}");
 	int64_t dcount = std::count(userinput.begin(), userinput.end(), 'd');
+
+
+	// Initialize the vector for the class Diceset, dicesets and set the amount of d큦 as reserve
+	std::vector<Diceset> dicesets;
+	dicesets.reserve(dcount);
+	int addsubtract = 0;
 
 	// If there are wrong characters or no d큦, output help for the user, else start the process of filtering the string
 	if (foundwronginputindex != -1) {
@@ -46,10 +46,6 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 		int64_t plusminuscount = std::count(userinput.begin(), userinput.end(), '+');
 		plusminuscount += std::count(userinput.begin(), userinput.end(), '-');
 		plusminuscount -= 1;
-
-		// Initialize the vector for the class Diceset, dicesets and set the amount of d큦 as reserve
-		std::vector<Diceset> dicesets;
-		dicesets.reserve(dcount);
 
 		// For the amount of +/- found in the input, sort the string into addsubtract or create Diceset objects
 		for (int i = 0; i < plusminuscount; i++) {
@@ -72,7 +68,7 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 
 			// If the next part of userinput is a addition or subtraction of a number filter it out of the string and add or subtract it from addsubtract.
 			// After that remove the numbers out of the string.
-			if (nextdindex == - 1 || nextdindex - secondoperatorindex >= 2) {
+			if (nextdindex == -1 || nextdindex - secondoperatorindex >= 2) {
 				if (plusminus) {
 					addsubtract += std::stoi(userinput.substr(0, secondoperatorindex));
 				}
@@ -98,8 +94,9 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 				if (braketindex - nextdindex == 1) {
 					// Remove the brackets around the special die eyes, assign it to a new string and remove that part from userinput
 					specialdiesides = userinput.substr(1, secondoperatorindex - nextdindex - 3);
-					userinput = userinput.erase(0, secondoperatorindex - nextdindex - 1); // 1 to 0
-					diesides = std::count(specialdiesides.begin(), specialdiesides.end(), ',') + 1;
+					userinput = userinput.erase(0, secondoperatorindex - nextdindex - 1);
+					specialdiesides = specialdiesides + ",";
+					diesides = std::count(specialdiesides.begin(), specialdiesides.end(), ',');
 				}
 				else {
 					// Create a special die out of a normal die, by starting at one and increasing to the number of sides, assign them to new string and remove sides from input
@@ -108,7 +105,6 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 					for (int i = 1; i <= diesides; i++) {
 						specialdiesides.append(std::to_string(i) + ",");
 					}
-					specialdiesides.erase(specialdiesides.size() - 1);
 				}
 
 				// Define the vetor for the amount of eyes on each side and set as reserve for it
@@ -120,15 +116,21 @@ Struct getdicesets(int addsubtract, std::vector<Diceset> dicesets) {
 					int64_t commaindex = specialdiesides.find(",");
 					eyes.push_back(int(std::stoi(specialdiesides.substr(0, commaindex))));
 					specialdiesides.erase(0, commaindex + 1);
+					std::cout << eyes[i] << std::endl;
 				}
 
 				// The amount of dice thrown, die sides and the vector with all eyes on a die get pushed into the objects vector dicesets of class Diceset
-				dicesets.push_back(Diceset{diesides, eyes, dicethrown, plusminus});
-				
+				dicesets.push_back(Diceset{ diesides, eyes, dicethrown, plusminus });
+
 				//For tests
 				//std::cout << dicesets[0].sides << std::endl << dicesets[0].alleyes[5] << std::endl << dicesets[0].amount << std::endl << dicesets[0].plusorminus << std::endl << addsubtract;
-				//23-56+68+12d{4,5,45,23,12,14}-20d68
+				//std::cout << dicesets[1].alleyes[11];
+				//23-56+68+12d{4,5,45,23,12,14}-4d12
 			}
 		}
 	}
+	// Fill the vector and integer into the struct and return to caller
+	output.addsubtract = addsubtract;
+	output.dicesets = dicesets;
+	return output;
 }

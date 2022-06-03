@@ -148,6 +148,7 @@
     <ClInclude Include="Diceset.h" />
     <ClInclude Include="Die.h" />
     <ClInclude Include="getdicesets.h" />
+    <ClInclude Include="struct_sortedinput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,13 +3,11 @@
 
 #include <iostream>
 #include "getdicesets.h"
+#include "struct_sortedinput.h"
+
 
 int main(){
-    int plusminus;
-    std::vector<Diceset> dicesets;
-
-    func_getdicesets(&plusminus, &dicesets);
-
+    sortedinput input = getdicesets();
     }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

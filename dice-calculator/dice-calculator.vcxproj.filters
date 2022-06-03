@@ -29,5 +29,8 @@
     <ClInclude Include="getdicesets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="struct_sortedinput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
