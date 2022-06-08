@@ -145,10 +145,13 @@
     <ClCompile Include="dice-calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Diceset.h" />
-    <ClInclude Include="Die.h" />
-    <ClInclude Include="getdicesets.h" />
-    <ClInclude Include="struct_sortedinput.h" />
+    <ClInclude Include="class_Diceset.h" />
+    <ClInclude Include="class_Die.h" />
+    <ClInclude Include="class_Diewithside.h" />
+    <ClInclude Include="func_getdicesets.h" />
+    <ClInclude Include="func_maximumpossibilities.h" />
+    <ClInclude Include="func_superdiecreator.h" />
+    <ClInclude Include="struct_Sortedinput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

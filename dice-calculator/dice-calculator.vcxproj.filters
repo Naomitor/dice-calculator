@@ -20,16 +20,25 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Die.h">
+    <ClInclude Include="class_Die.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Diceset.h">
+    <ClInclude Include="class_Diceset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getdicesets.h">
+    <ClInclude Include="func_getdicesets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="struct_sortedinput.h">
+    <ClInclude Include="struct_Sortedinput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="func_superdiecreator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="class_Diewithside.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="func_maximumpossibilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,17 +1,20 @@
-// dice-calculator.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
-#include "getdicesets.h"
+#include "func_getdicesets.h"
 #include "struct_sortedinput.h"
+#include "func_superdiecreator.h"
 
 
 int main(){
-    sortedinput input = getdicesets();
-    }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+        // First select what the user wants to do
+
+        // Call getdicesets to get the user input for all the actions
+        sortedinput varsortedinput = func_getdicesets();
+
+        // Output user request
+        std::vector<int64_t> superdie = func_superdie(varsortedinput);
+        std::cout << superdie.size();
+}
 
 // Ideas:
 // For crit with possible adv/dis and/or elvenluck:
