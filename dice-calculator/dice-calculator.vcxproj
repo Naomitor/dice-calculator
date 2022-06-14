@@ -148,6 +148,7 @@
     <ClInclude Include="class_Diceset.h" />
     <ClInclude Include="class_Die.h" />
     <ClInclude Include="class_Diewithside.h" />
+    <ClInclude Include="class_Result.h" />
     <ClInclude Include="func_getdicesets.h" />
     <ClInclude Include="func_maximumpossibilities.h" />
     <ClInclude Include="func_superdiecreator.h" />

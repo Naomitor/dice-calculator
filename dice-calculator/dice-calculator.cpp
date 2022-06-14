@@ -2,18 +2,27 @@
 #include "func_getdicesets.h"
 #include "struct_sortedinput.h"
 #include "func_superdiecreator.h"
+#include <chrono>
 
 
 int main(){
 
-        // First select what the user wants to do
+    std::chrono::time_point<std::chrono::system_clock> start, end;
 
-        // Call getdicesets to get the user input for all the actions
-        sortedinput varsortedinput = func_getdicesets();
+    // First select what the user wants to do
 
-        // Output user request
-        std::vector<int64_t> superdie = func_superdie(varsortedinput);
-        std::cout << superdie.size();
+    // Call getdicesets to get the user input for all the actions
+    sortedinput varsortedinput = func_getdicesets();
+
+    start = std::chrono::system_clock::now();
+
+    // Output user request
+    std::vector<int64_t> superdie = func_superdiecreator(varsortedinput);
+
+    end = std::chrono::system_clock::now();
+    std::chrono::duration<double> elapsed_seconds = end - start;
+
+    std::cout << superdie.size() << std::endl << superdie[0] << std::endl << superdie[superdie.size() - 1] << std::endl << "elapsed time: " << elapsed_seconds.count() << std::endl;
 }
 
 // Ideas:
@@ -26,14 +35,18 @@ int main(){
 // Chance to get equal and more:
 // possibilities/maximum posibilities 
 //
+// Chance to get equal for plotting graph:
+// possibilities/maximum posibilities
+
+
+// Ready:
+//
 // Maximum possibilities:
-// length of super die
+// length of super die OR dice sides ^ dice amount * each other dicesets
 //
 // Super die:
 // all possible dice throws in one array
-//
-// Chance to get equal for plotting graph:
-// possibilities/maximum posibilities
+
 
 // Websites
 // https://www.w3schools.com/cpp/cpp_conditions.asp

@@ -101,7 +101,7 @@ sortedinput func_getdicesets() {
 				}
 				else {
 					// Create a special die out of a normal die, by starting at one and increasing to the number of sides, assign them to new string and remove sides from input
-					diesides = std::stoi(userinput.substr(0, secondoperatorindex - nextdindex - 1));
+					diesides = static_cast<int64_t>(std::stoi(userinput.substr(0, secondoperatorindex - nextdindex - 1)));
 					userinput = userinput.erase(0, secondoperatorindex - nextdindex - 1);
 					for (int64_t i = 1; i <= diesides; i++) {
 						specialdiesides.append(std::to_string(i) + ",");

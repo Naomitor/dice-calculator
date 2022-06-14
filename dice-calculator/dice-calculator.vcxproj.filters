@@ -41,5 +41,8 @@
     <ClInclude Include="func_maximumpossibilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="class_Result.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

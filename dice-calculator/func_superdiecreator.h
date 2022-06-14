@@ -9,7 +9,6 @@
 std::mutex superdielock;
 
 
-//
 void func_multicreator(std::vector<Diewithside> dicewithside, int64_t lastdieside, int64_t size, int64_t lastdiepossibilities, std::vector<int64_t> &superdie) {
 	
 	// Set the last die side to number of the thread
@@ -21,17 +20,17 @@ void func_multicreator(std::vector<Diewithside> dicewithside, int64_t lastdiesid
 	// Calculate all possible results of all dice thrown with the last one set
 	for (int64_t i = 0; i < lastdiepossibilities; i++) {
 		
-		// Reset the result
+		// Reset the result, add all active sides together and push them into the vector partsuperdie
 		int64_t result = 0;
 		for (int64_t j = 0; j < size; j++) {
 			result += dicewithside[j].alleyes[dicewithside[j].dieside];
 		}
 		partsuperdie.push_back(result);
 
-		//
+		// Check if the last die side has been reached if this is the case reset the side else raise it by one and break
 		for (int64_t j = 0; j < size - 1; j++) {
 			if (dicewithside[j].dieside == dicewithside[j].sides - 1) {
-				dicewithside[j].dieside == 0;
+				dicewithside[j].dieside = 0;
 			}
 			else {
 				dicewithside[j].dieside += 1;
@@ -40,6 +39,7 @@ void func_multicreator(std::vector<Diewithside> dicewithside, int64_t lastdiesid
 		}
 	}
 
+	// Add each partsuperdie to the superdie vector
 	superdielock.lock();
 	for (int64_t i = 0; i < lastdiepossibilities; i++) {
 		superdie.push_back(partsuperdie[i]);
@@ -49,9 +49,8 @@ void func_multicreator(std::vector<Diewithside> dicewithside, int64_t lastdiesid
 
 
 
-
-// The function superdie creates an array that holds all possible outcomes of the dice thrown
-std::vector<int64_t> func_superdie(sortedinput varsortedinput) {
+// The function superdie creates a vector that holds all possible outcomes of the dice thrown
+std::vector<int64_t> func_superdiecreator(sortedinput varsortedinput) {
 
 	// Get the size of the diceset vector and create a new vector out of class Diewithside
 	int64_t size = varsortedinput.dicesets.size();
@@ -78,11 +77,18 @@ std::vector<int64_t> func_superdie(sortedinput varsortedinput) {
 	// Multithread calculate all possibilities and save them in array
 	std::vector<int64_t> superdie;
 	superdie.reserve(maximumpossibilities);
-	std::thread thread_superdiecreator;
+	std::vector<std::thread> thread_superdiecreator;
+	
+
 	for (int64_t i = 0; i < dicewithside.back().sides; i++) {
-		std::thread thread_superdiecreator(func_multicreator, dicewithside, i, amount, lastdiepossibilities, superdie);
+		thread_superdiecreator.emplace_back(func_multicreator, dicewithside, i, amount, lastdiepossibilities, std::reference_wrapper(superdie));
 	}
-	thread_superdiecreator.join();
+
+	for (auto& t : thread_superdiecreator) {
+		t.join();
+	}
+
+	sort(superdie.begin(), superdie.end());
 
 	return superdie;
 }
