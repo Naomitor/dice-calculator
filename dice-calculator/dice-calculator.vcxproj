@@ -148,10 +148,15 @@
     <ClInclude Include="class_Diceset.h" />
     <ClInclude Include="class_Die.h" />
     <ClInclude Include="class_Diewithside.h" />
-    <ClInclude Include="class_Result.h" />
+    <ClInclude Include="class_Superdieresult.h" />
+    <ClInclude Include="func_d20crit.h" />
     <ClInclude Include="func_getdicesets.h" />
     <ClInclude Include="func_maximumpossibilities.h" />
+    <ClInclude Include="func_largestthrow.h" />
+    <ClInclude Include="func_selection.h" />
+    <ClInclude Include="func_smallestthrow.h" />
     <ClInclude Include="func_superdiecreator.h" />
+    <ClInclude Include="func_meanthrow.h" />
     <ClInclude Include="struct_Sortedinput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

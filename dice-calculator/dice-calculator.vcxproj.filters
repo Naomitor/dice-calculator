@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Classes">
+      <UniqueIdentifier>{9a7777a0-5d53-4bbf-beeb-750da6b2ddf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Functions">
+      <UniqueIdentifier>{18818506-fcc3-47fe-886c-b7de44d691ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Structures">
+      <UniqueIdentifier>{10e1c1b1-f5d8-4d2b-bb5b-68bab703f864}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dice-calculator.cpp">
@@ -20,29 +29,44 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="class_Die.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="struct_Sortedinput.h">
+      <Filter>Header Files\Structures</Filter>
     </ClInclude>
     <ClInclude Include="class_Diceset.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Classes</Filter>
     </ClInclude>
-    <ClInclude Include="func_getdicesets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="struct_Sortedinput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="func_superdiecreator.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="class_Die.h">
+      <Filter>Header Files\Classes</Filter>
     </ClInclude>
     <ClInclude Include="class_Diewithside.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="func_getdicesets.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="func_largestthrow.h">
+      <Filter>Header Files\Functions</Filter>
     </ClInclude>
     <ClInclude Include="func_maximumpossibilities.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Functions</Filter>
     </ClInclude>
-    <ClInclude Include="class_Result.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="func_smallestthrow.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="func_superdiecreator.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="class_Superdieresult.h">
+      <Filter>Header Files\Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="func_selection.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="func_meanthrow.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="func_d20crit.h">
+      <Filter>Header Files\Functions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

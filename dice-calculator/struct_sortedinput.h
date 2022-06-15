@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include "class_Diceset.h"
 
 // The structure sortedinput is used to pass the getdicesets return values to the other functions

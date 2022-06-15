@@ -1,36 +1,36 @@
 #include <iostream>
-#include "func_getdicesets.h"
-#include "struct_sortedinput.h"
-#include "func_superdiecreator.h"
-#include <chrono>
+#include <mutex>
+#include <algorithm>
+
+#include "func_selection.h"
+
 
 
 int main(){
 
-    std::chrono::time_point<std::chrono::system_clock> start, end;
+    bool repeat = true;
+    while (repeat == true) {
+        
+        // Set timer start
+        std::chrono::time_point<std::chrono::system_clock> start, end;
+        start = std::chrono::system_clock::now();
 
-    // First select what the user wants to do
+        // Select what the user wants to do a run the code
+        repeat = func_selection();
 
-    // Call getdicesets to get the user input for all the actions
-    sortedinput varsortedinput = func_getdicesets();
 
-    start = std::chrono::system_clock::now();
+        // Stop timer and output
+        end = std::chrono::system_clock::now();
+        std::chrono::duration<double> elapsed_seconds = end - start;
+        std::cout << "elapsed time: " << elapsed_seconds.count() << std::endl;
 
-    // Output user request
-    std::vector<int64_t> superdie = func_superdiecreator(varsortedinput);
-
-    end = std::chrono::system_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
-
-    std::cout << superdie.size() << std::endl << superdie[0] << std::endl << superdie[superdie.size() - 1] << std::endl << "elapsed time: " << elapsed_seconds.count() << std::endl;
+        //std::cout << superdie.size() << std::endl << superdie[5].amount << std::endl << superdie[superdie.size() - 1].amount << std::endl;
+    }
 }
 
 // Ideas:
 // For crit with possible adv/dis and/or elvenluck:
-// Highest z of xdy =  ((y-z)/y)^x
-// 
-// Meanthrow
-// (All eyes on die / sides on die) * diceset
+// Highest z of xdy =  1-((1-(y-z+1)/y))^x)
 //
 // Chance to get equal and more:
 // possibilities/maximum posibilities 
@@ -45,8 +45,10 @@ int main(){
 // length of super die OR dice sides ^ dice amount * each other dicesets
 //
 // Super die:
-// all possible dice throws in one array
-
+// all possible dice throws in one vector
+// 
+// Meanthrow
+// (All eyes on die / sides on die) * diceset
 
 // Websites
 // https://www.w3schools.com/cpp/cpp_conditions.asp
@@ -55,3 +57,4 @@ int main(){
 // https://www.geeksforgeeks.org/multithreading-in-cpp/
 // https://www.gigacalculator.com/calculators/dice-probability-calculator.php#two-six-sided
 // https://www.geeksforgeeks.org/how-to-return-multiple-values-from-a-function-in-c-or-cpp/
+// https://docs.google.com/document/d/11eTMZPPxWXHY0rQEhK1msO-40BcCGrzArSl4GX4CiJE/edit#

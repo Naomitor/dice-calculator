@@ -1,6 +1,4 @@
 #pragma once
-#include <vector>
-#include <cmath>
 
 
 int64_t func_maximumpossibilities(std::vector<Diceset> dicesets, int64_t size) {

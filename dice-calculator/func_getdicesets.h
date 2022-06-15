@@ -1,13 +1,12 @@
 #pragma once
-#include <vector>
 #include "class_Diceset.h"
-#include <iostream>
-#include <string>
 #include "struct_sortedinput.h"
+
 
 // The function getdicesets sorts a user input into a vector of Dicesets and an interger to be added or subtracted and returns it in the structure Sortedinput
 
-sortedinput func_getdicesets() {
+sortedinput func_getdicesets() 
+{
 	sortedinput output;
 
 	// Display message for user
@@ -30,13 +29,16 @@ sortedinput func_getdicesets() {
 	std::vector<Diceset> dicesets;
 	dicesets.reserve(dcount);
 	int64_t addsubtract = 0;
+	bool error = false;
 
 	// If there are wrong characters or no d´s, output help for the user, else start the process of filtering the string
 	if (foundwronginputindex != -1) {
 		std::cout << "Looks like there are characters in the input that I do not recognize";
+		error = true;
 	}
 	else if (dcount == 0) {
 		std::cout << "You forgot the d ;)";
+		error = true;
 	}
 	else {
 
