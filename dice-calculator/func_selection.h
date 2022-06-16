@@ -71,6 +71,23 @@ void d20crit()
 	std::this_thread::sleep_for(2s);
 }
 
+
+void superdie()
+{
+
+	std::chrono::time_point<std::chrono::system_clock> start, end;
+	start = std::chrono::system_clock::now();
+
+	sortedinput diceinput = func_getdicesets();
+	std::vector<Superdieresult> superdie = func_superdiecreator(diceinput);
+	std::cout << superdie.size() << std::endl << superdie[0].amount << std::endl << superdie[superdie.size() - 1].amount << std::endl;
+
+	end = std::chrono::system_clock::now();
+	std::chrono::duration<double> elapsed_seconds = end - start;
+	std::cout << "elapsed time for superdie: " << elapsed_seconds.count() << std::endl;
+}
+
+
 // This is where the user decides what to do next
 int64_t func_selection() 
 {
@@ -84,7 +101,7 @@ int64_t func_selection()
 	std::string userselection;
 	std::cin >> userselection;
 
-	int64_t foundwronginputindex = userselection.find_first_not_of("123456");
+	int64_t foundwronginputindex = userselection.find_first_not_of("1234567");
 	int64_t userselectioncount = userselection.length();
 
 	if (foundwronginputindex != -1) {
@@ -116,7 +133,9 @@ int64_t func_selection()
 			stop = false;
 			return stop;
 		}
+		else if (userselectionint == 7) {
+			superdie();
+		}
 	}
-	
 	return stop;
 }
