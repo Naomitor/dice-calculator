@@ -78,6 +78,9 @@ int64_t func_selection()
 			stop = false;
 			return stop;
 		}
+		else if (userselectionint == 7) {
+			superdie();
+		}
 	}
 	return stop;
 }
