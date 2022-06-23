@@ -105,12 +105,12 @@ std::vector<Superdieresult> func_superdiecreator(sortedinput varsortedinput)
 	}
 
 	// Get the maximum possibilities and divide by sides of the last die to get the amount of iterations each thread has to run
-	int64_t maximumpossibilities = func_maximumpossibilities(varsortedinput.dicesets, size);
+	int64_t maximumpossibilities = func_maximumpossibilities(varsortedinput.dicesets);
 	int64_t lastdiepossibilities = maximumpossibilities / dicewithside[amount-1].sides;
 
 	// Get the smallest and largest throw
-	int64_t largestthrow = func_largestthrow(varsortedinput.dicesets, size);
-	int64_t smallestthrow = func_smallestthrow(varsortedinput.dicesets, size);
+	int64_t largestthrow = func_largestthrow(varsortedinput.dicesets);
+	int64_t smallestthrow = func_smallestthrow(varsortedinput.dicesets);
 	int64_t numberofresults = largestthrow - smallestthrow;
 
 	// Multithread calculate all possibilities and save them in array

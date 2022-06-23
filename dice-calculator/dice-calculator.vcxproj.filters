@@ -68,5 +68,8 @@
     <ClInclude Include="func_d20crit.h">
       <Filter>Header Files\Functions</Filter>
     </ClInclude>
+    <ClInclude Include="func_stevie_o_read_it_superdie.h">
+      <Filter>Header Files\Functions</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

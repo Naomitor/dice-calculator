@@ -9,8 +9,8 @@ sortedinput func_getdicesets()
 {
 	sortedinput output;
 
-	// Display message for user
-	std::cout << "Please input your dice set/sets and anthing you want to add or subtract" << std::endl;
+	// Display message for user !!!
+	//std::cout << "Please input your dice set/sets and anthing you want to add or subtract" << std::endl;
 
 	// Get the user input it should look like this: 2d6+1d{2,3,4,4}-5
 	// 2d6 being 2 dice of standard layout with six sides showing the eyes 1,2,3,4,5,6

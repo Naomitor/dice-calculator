@@ -157,6 +157,7 @@
     <ClInclude Include="func_smallestthrow.h" />
     <ClInclude Include="func_superdiecreator.h" />
     <ClInclude Include="func_meanthrow.h" />
+    <ClInclude Include="func_stevie_o_read_it_superdie.h" />
     <ClInclude Include="struct_Sortedinput.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
